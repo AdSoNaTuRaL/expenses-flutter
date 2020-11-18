@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:expenses/components/chart.dart';
 import 'package:flutter/material.dart';
 import './components/transaction_form.dart';
 import './components/transaction_list.dart';
@@ -22,7 +23,7 @@ class ExpensesApp extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 20,
               fontWeight: FontWeight.w700
-            )
+            ),
           )
         )
       ),
@@ -36,21 +37,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction>_transactions = [
-    // Transaction(
-    //   id: 't1', title: 'Novo Computador', value: 800, time: DateTime.now()),
-    // Transaction(
-    //   id: 't2', title: 'Novo tenis', value: 300, time: DateTime.now()),
-    // Transaction(
-    //   id: 't3', title: 'Novo teclado', value: 340, time: DateTime.now()),
-  ];
+  final List<Transaction>_transactions = [];
 
-  _addTransaction(String title, double value) {
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((element) {
+      return element.time.isAfter(DateTime.now().subtract(
+        Duration(days: 7)
+      ));
+    }).toList();
+  }
+
+  _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      time: DateTime.now(),
+      time: date,
     );
 
     setState(() {
@@ -58,6 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     Navigator.of(context).pop();
+  }
+
+  _deleteTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((element) => element.id == id);
+    });
   }
 
   _openTransactionFormModal(BuildContext context) {
@@ -83,13 +91,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              child: Card(
-                child: Text('Grafico'),
-                elevation: 5,
-              ),
-            ),
-            TransactionList(_transactions),
+            Chart(_recentTransactions),
+            TransactionList(_transactions, _deleteTransaction),
           ],
         ),
       ),
