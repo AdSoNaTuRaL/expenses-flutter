@@ -1,6 +1,7 @@
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../utils/formatValue.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
@@ -49,8 +50,7 @@ class TransactionList extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(6),
                       child: FittedBox(
-                        child:
-                            Text('R\$${transaction.value.toStringAsFixed(2)}'),
+                        child: Text(formatValue(transaction.value)),
                       ),
                     ),
                   ),
