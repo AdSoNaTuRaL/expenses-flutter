@@ -21,7 +21,7 @@ A few resources to get you started if this is your first Flutter project:
 </div>
 
 ### After install Flutter
-- Start with star and clone this repo.
+- Start with :star: and clone this repo.
 - Open the project in VSCode or Android Studio.
 - Run flutter pub get to get the packages
 - Start your emulator
