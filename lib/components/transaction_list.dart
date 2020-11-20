@@ -1,7 +1,6 @@
+import 'package:expenses/components/transaction_item.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import '../utils/formatValue.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
@@ -38,42 +37,9 @@ class TransactionList extends StatelessWidget {
             itemBuilder: (ctx, index) {
               final transaction = transactions[index];
 
-              return Card(
-                elevation: 3,
-                margin: EdgeInsets.symmetric(
-                  vertical: 5,
-                  horizontal: 5,
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Padding(
-                      padding: const EdgeInsets.all(6),
-                      child: FittedBox(
-                        child: Text(formatValue(transaction.value)),
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    transaction.title,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  subtitle: Text(
-                    DateFormat('d MMM y').format(transaction.time),
-                  ),
-                  trailing: MediaQuery.of(context).size.width > 400
-                      ? FlatButton.icon(
-                          onPressed: () => onRemove(transaction.id),
-                          label: Text('Excluir'),
-                          icon: Icon(Icons.delete),
-                          textColor: Theme.of(context).errorColor,
-                        )
-                      : IconButton(
-                          icon: Icon(Icons.delete),
-                          color: Theme.of(context).errorColor,
-                          onPressed: () => onRemove(transaction.id),
-                        ),
-                ),
+              return TransactionItem(
+                transaction: transaction,
+                onRemove: onRemove,
               );
             },
           );
