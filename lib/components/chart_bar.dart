@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/formatValue.dart';
 
 class ChartBar extends StatelessWidget {
   final String label;
@@ -6,20 +7,6 @@ class ChartBar extends StatelessWidget {
   final double percentage;
 
   ChartBar(this.label, this.value, this.percentage);
-
-  String get _formatValue {
-    if (value <= 1000) {
-      return value.toStringAsFixed(2);
-    } else if (value > 1000 && value < 10000) {
-      return value.toString()[0] + "K";
-    } else if (value >= 10000 && value < 100000) {
-      return value.toString().substring(0, 2) + "K";
-    } else if (value >= 100000 && value < 1000000) {
-      return value.toString().substring(0, 3) + "K";
-    } else {
-      return value.toString()[0] + "M";
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +17,7 @@ class ChartBar extends StatelessWidget {
             Container(
               height: constraints.maxHeight * 0.15,
               child: FittedBox(
-                child: Text(_formatValue),
+                child: Text(formatValue(value)),
               ),
             ),
             SizedBox(height: constraints.maxHeight * 0.05),
