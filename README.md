@@ -25,18 +25,19 @@ A few resources to get you started if this is your first Flutter project:
 </div>
 
 ### :construction_worker: How to Run (after install flutter)
-> 😁️ Start with :star: in this repo and clone it.
+- Start with :star: in this repo and clone it.
 ```bash
 # Clone Repository
 $ git clone https://github.com/AdSoNaTuRaL/expenses-flutter.git
 ```
-> 🆚️ Open the project in VSCode or Android Studio.
+- 🆚️ Open the project in VSCode or Android Studio.
 ```bash
 # Go to project folder
 $ cd expenses-flutter/
+$ code .
 
 # Run to get the packages
 $ flutter pub get
 ```
-> Start your emulator
-> Run the app and enjoy
+- Start your emulator
+- Run the app and enjoy
