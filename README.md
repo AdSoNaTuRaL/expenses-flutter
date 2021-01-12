@@ -1,9 +1,6 @@
 <div align="center">
    <h1>Expenses</h1>
    <h4>A simnple flutter project that allows you to record your expenses per day and shows a graph of the average spent weekly. </h4>
-  <sub>Built with ❤︎ by
-    <a href="https://github.com/AdSoNaTuRaL">Adson Henrique</a>
-  </sub>
 </div>
 
 ## :pushpin: Getting Started
